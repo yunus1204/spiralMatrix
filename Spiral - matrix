@@ -1,0 +1,39 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int arr[n][n];
+    int minrow=0,maxrow=n-1,mincol=0,maxcol=n-1,i;
+    int co=1;
+    while(co<=n*n){
+        for(i=mincol;i<=maxcol;i++){
+            arr[minrow][i]=co;
+            co++;
+        }
+        for(i=minrow+1;i<=maxrow;i++){
+            arr[i][maxcol]=co;
+            co++;
+        }
+        for(i=maxcol-1;i>=mincol;i--){
+            arr[maxrow][i]=co;
+            co++;
+        }
+        for(i=maxrow-1;i>=minrow+1;i--){
+            arr[i][mincol]=co;
+            co++;
+        }
+        minrow++;
+        maxrow--;
+        mincol++;
+        maxcol--;
+    }
+    for(i=0;i<n;i++,printf("\n"))
+        for(int j=0;j<n;j++)
+            printf("%d  ",arr[i][j]);
+
+    return 0;
+}
+
